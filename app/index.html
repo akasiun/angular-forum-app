@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>Project - Forum</title>
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css">
+    
+    <!-- Google Font - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+</head>
+<body ng-app="ForumApp" ng-cloak="">
+    <!-- Header -->
+    <header-directive></header-directive>
+    
+    <!-- Main Content -->
+    <div class="content" layout-padding="">
+        <!-- List of posts -->
+        <div flex="" layout-align="center center">            
+            <!-- Headline -->
+            <md-toolbar layout="row" class="md-hue">
+                <div class="md-toolbar-tools">
+                    <h4>Forum Posts</h4>
+                </div>                
+            </md-toolbar>
+            <!-- Filter and New Post button-->
+            <md-content>
+                <div layout-gt-sm="row">
+                    <md-input-container flex="15">
+                        <md-button class="md-noink md-primary">Add Post</md-button>
+                    </md-input-container>
+                    <md-input-container md-no-float="" flex-gt-sm="" flex="80" layout-padding="">
+                        <!--<label>Filter</label>-->                    
+                        <input type="search" class="search-field" placeholder="Filter posts" ng-model="search.title">
+                    </md-input-container>
+                </div>
+                <!--<md-divider></md-divider>-->
+            </md-content>
+            <!-- Posts container -->
+            <md-content ng-controller="PostsController as ctrl">
+                <md-list>
+                    <post-directive ng-repeat="post in ctrl.getPosts() | filter:search as results" ng-click="null">
+                        <!--<comment-directive></comment-directive>-->
+                    </post-directive>
+                    
+                    <!-- If no reselts is found, show this -->
+                    <md-subheader class="md-no-sticky" ng-if="results.length === 0">
+                        <strong>No Results Found</strong>
+                    </md-subheader>
+                </md-list>
+            </md-content>
+        </div>
+    </div>    
+    <!-- Footer -->
+    <footer></footer>
+    <!-- load main app -->
+    <script src="src/app.js"></script>
+    <!-- load controllers -->
+    <script src="src/posts.controller.js"></script>
+    <!-- load directives -->
+    <script src="src/header.directive.js"></script>
+    <script src="src/post.directive.js"></script>
+    <script src="src/comments.directive.js"></script>
+</body>
+</html>

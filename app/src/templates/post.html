@@ -1,0 +1,13 @@
+<md-list-item class="md-2-line" ng-click="toggleOpen = !toggleOpen">
+	<div class="md-avatar md-display-1">{{ post.id }}</div>
+	<div class="md-list-item-text" layout="column">
+		<h3 class="md-title">{{ post.title }}</h3>
+		<h4 class="md-subhead">by {{ ctrl.getUser(post.userId) }}</h4>		
+	</div>
+	<span class="md-caption">{{ ctrl.getComments(post.id).length }} comments</span>	
+</md-list-item>
+<md-content ng-show="toggleOpen" layout-padding="">
+	<p class="md-body-2">{{ post.body }}</p>
+	<comment-directive></comment-directive>
+</md-content>
+<md-divider ng-if="!$last" md-inset=""></md-divider>
