@@ -44,29 +44,35 @@
                 <!--<md-divider></md-divider>-->
             </md-content>
             <!-- Posts container -->
-            <md-content ng-controller="PostsController as ctrl">
-                <md-list>
-                    <post-directive ng-repeat="post in ctrl.getPosts() | filter:search as results" ng-click="null">
-                        <!--<comment-directive></comment-directive>-->
-                    </post-directive>
-                    
-                    <!-- If no reselts is found, show this -->
-                    <md-subheader class="md-no-sticky" ng-if="results.length === 0">
-                        <strong>No Results Found</strong>
-                    </md-subheader>
-                </md-list>
-            </md-content>
+            <posts-directive>
+                <!-- posts-directive template start:  -->
+                <md-content ng-controller="PostsController as posts">
+                    <md-list>
+                        <!-- TODO: implement filter: "... | filter:search as results"  -->
+                        <post-directive ng-repeat post="post" >
+                            <!--<comment-directive></comment-directive>-->
+                        </post-directive>
+                        
+                        <!-- If no reselts is found, show this -->
+                        <md-subheader class="md-no-sticky" ng-if="results.length === 0">
+                            <strong>No Results Found</strong>
+                        </md-subheader>
+                    </md-list>
+                </md-content>
+                <!-- posts-directive template end  -->
+            </posts-directive>
+            
         </div>
     </div>    
     <!-- Footer -->
     <footer></footer>
     <!-- load main app -->
     <script src="src/app.js"></script>
+    <!-- load services -->
+    <script src="src/app.services.js"></script>
     <!-- load controllers -->
-    <script src="src/posts.controller.js"></script>
+    <script src="src/app.controllers.js"></script>    
     <!-- load directives -->
-    <script src="src/header.directive.js"></script>
-    <script src="src/post.directive.js"></script>
-    <script src="src/comments.directive.js"></script>
+    <script src="src/app.directives.js"></script>    
 </body>
 </html>
