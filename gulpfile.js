@@ -1,6 +1,11 @@
-var gulp = require('gulp');
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
+var gulp = require('gulp'),
+    browserSync = require('browser-sync'),
+    reload = browserSync.reload,
+    watchFiles = [
+      'index.html',
+      'app/**/*.js',
+      'app/templates/**/*.html'      
+    ]
 
 gulp.task('default', ['serve']);
 
@@ -8,9 +13,9 @@ gulp.task('default', ['serve']);
 gulp.task('serve', function() {
   browserSync({
     server: {
-      baseDir: 'app'
+      baseDir: 'src'
     }
   });
 
-  gulp.watch(['*.html', 'src/templates/**/*.html', 'src/**/*.js'], {cwd: 'app'}, reload);
+  gulp.watch(watchFiles, {cwd: 'src'}, reload);
 });
