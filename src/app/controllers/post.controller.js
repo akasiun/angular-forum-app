@@ -2,27 +2,32 @@
  * 	@desc Post Controller ...
  */
 
-(function(){
+(function () {
     'use strict';
 
     angular
         .module('app')
         .controller('PostController', PostController);
-    
-    PostController.$inject = [postService];
+
+    PostController.$inject = ['postService'];
 
     function PostController(postService) {
         var ctrl = this;
-        ctrl.posts = [];
+        var posts = [];
         ctrl.getPosts = getPosts;
 
-        function getPosts() {
-            return postService.getPosts()
-                .then(function(data) { 
+        preloadAll();
+
+        function preloadAll() {
+            return postService.getPostsAll()
+                .then(function (data) {
                     console.dir(data);
-                    ctrl.posts = data;
-                    return ctrl.posts;
-                });           
+                    posts = data;                    
+                });
+        }
+
+        function getPosts() {
+            return posts;
         };
     };
 })();

@@ -3,7 +3,14 @@
 
     angular
         .module('app', [
+            // Angular Modules
             'ngMaterial',
-            'ngMessages'            
+            'ngMessages' 
+            // App Modules
+            // TODO: re-do in small composable components ...
+            // 'app.post'
+            // 'app.comment'
+            // 'app.user'
+            // ...
         ]);
 })();

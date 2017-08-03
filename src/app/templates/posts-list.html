@@ -1,0 +1,14 @@
+<!-- posts-directive template start:  -->
+<md-content ng-controller="PostController as postCtrl">
+    <md-list>
+        <!-- TODO: implement filter: "... | filter:search as results"  -->
+        <post-directive ng-repeat="post in postCtrl.getPosts()" post="post">
+            <!--<comment-directive></comment-directive>-->
+        </post-directive>
+        <!-- If no reselts is found, show this -->
+        <!-- <md-subheader class="md-no-sticky" ng-if="results.length === 0">
+                <strong>No Results Found</strong>
+            </md-subheader> -->
+    </md-list>
+</md-content>
+<!-- posts-directive template end  -->

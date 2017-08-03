@@ -12,7 +12,8 @@
 
     function userDirective() {
         return {
-		    restrict: 'E',
+            restrict: 'E',
+            scope: {},
 		    templateUrl: 'app/templates/user.html'
 	    }
     };
